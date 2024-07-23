@@ -34,6 +34,10 @@ async fn index(path: web::Path<String>, redis_addr: web::Data<Addr<RedisActor>>)
     let prefix = env::var("REDIS_PREFIX").expect("REDIS_PREFIX must be set");
     let key = if path.is_empty() {
         format!("{}index.html", prefix)
+    } else if path == "fr_CH" {
+        format!("{}index.html", prefix)
+    } else if path.ends_with('/') {
+        format!("{}{}index.html", prefix, path)
     } else {
         format!("{}{}", prefix, path)
     };
