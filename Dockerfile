@@ -15,7 +15,10 @@ COPY .env /usr/local/bin/.env
 # Set environment variables to be used by default, they can be overridden by Jelastic environment variables
 ENV REDIS_URL=redis://host.docker.internal/
 ENV REDIS_PREFIX=myapp:
-ENV PORT=80
 ENV RUST_LOG=info
+ENV PORT=80
+
+# Expose the port that the application will run on
+EXPOSE 80
 
 CMD ["actix_redis_server"]
